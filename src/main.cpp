@@ -1,4 +1,11 @@
 #include "main.h"
+#include "console/console.h"
+
+CONSOLE_COMMAND(hello)
+{
+	puts("It works!");
+	return 0;
+}
 
 /**
  * A callback function for LLEMU's center button.
@@ -27,6 +34,8 @@ void initialize() {
 	pros::lcd::set_text(1, "Hello PROS User!");
 
 	pros::lcd::register_btn1_cb(on_center_button);
+
+	console_start_task();
 }
 
 /**
@@ -90,3 +99,7 @@ void opcontrol() {
 		pros::delay(20);
 	}
 }
+
+STATIC_COMMAND_START
+STATIC_COMMAND("hello", "Say hello", hello)
+STATIC_COMMAND_END(list);
