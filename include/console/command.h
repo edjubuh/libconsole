@@ -34,7 +34,7 @@ typedef int (*console_cmd)(int argc, const cmd_args *argv);
 #ifdef __cplusplus
 #define CONSOLE_COMMAND(name) extern "C" int name(int argc, const cmd_args *argv)
 #else
-#define CONSOLE_COMMAND(name) extern "C" int name(int argc, const cmd_args *argv)
+#define CONSOLE_COMMAND(name) int name(int argc, const cmd_args *argv)
 #endif
 
 /* a block of commands to register */
@@ -69,6 +69,13 @@ typedef struct _cmd_block {
 
 
 #define COMMAND_BLOCK_INIT_ITEM(cmd_block_ptr, cmd_ptr) {(cmd_block_ptr)->next = NULL; (cmd_block_ptr)->count = 1; (cmd_block_ptr)->list = cmd_ptr;}
+
+#define STATIC_COMMAND_SINGLE(func, ...) _STATIC_COMMAND_SINGLE(func, ##__VA_ARGS__, "", #func)
+
+#define _STATIC_COMMAND_SINGLE(func, help_str, command_str, ...) \
+  STATIC_COMMAND_START_NAMED(func)            \
+  STATIC_COMMAND(command_str, help_str, func)       \
+  STATIC_COMMAND_END_NAMED(func)
 
 #ifdef __cplusplus
 }
