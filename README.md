@@ -10,6 +10,8 @@ To be done, but:
 prosv5 conduct apply libconsole
 ```
 
+Note: An unreleased version of PROS kernel is required. Use a template from at least purduesigbots/pros@065b9d4
+
 ## Example
 ```c++
 #include "main.h"
