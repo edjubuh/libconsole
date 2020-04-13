@@ -4,6 +4,8 @@ _Easy to use console application for PROS projects_
 libconsole is a convenient console for PROS projects based off travisg's
 littkernel/lk console application.
 
+Pull requests are welcome to add standard functionality to the console!
+
 ## Installation
 To be done, but:
 ```
